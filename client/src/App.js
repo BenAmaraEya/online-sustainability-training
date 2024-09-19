@@ -58,7 +58,7 @@ function App() {
         } />
         <Route path="/logout" element={<Logout/>}/>
         <Route path="/formationdetails/:id" element={<FormationDetails />} />
-        
+        <Route path="/nosformations" element={<Formations />} />
         <Route path="/formations/:idFormation" element={<Formation />} />
         <Route path="/video" element={<VideoPlayer />} />
       </Routes>
@@ -76,7 +76,7 @@ function MainLayout({ userRole }) {
           <Routes>
             {/* Common Routes for Both Roles */}
             <Route path="/" element={<Home />} />
-
+            
             {/* Admin-Specific Routes */}
             {userRole === 'admin' && (
               <>
@@ -113,6 +113,8 @@ function MainLayout({ userRole }) {
                 <Route path="/formations" element={<Formations />} />
                 <Route path="/formationdetails/:id" element={<FormationDetails />} />
                 <Route path="/video" element={<VideoPlayer />} />
+                <Route path="/message" element={<Messagesection />} />
+                <Route path="/forums" element={<Forums />} />
               </>
             )}
           </Routes>

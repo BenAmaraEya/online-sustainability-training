@@ -66,15 +66,15 @@ const FormationAdminDetails = () => {
         Retour
       </Button>
       <VStack spacing={4} align="stretch">
-        {formation.image && (
-          <Image
-            src={formation.image}
-            alt={formation.titre}
-            boxSize="400px"
-            objectFit="cover"
-            alignSelf="center"
-          />
-        )}
+      {formation.image && (
+                    <Image
+                      src={`http://localhost:5000/${formation.image}`}
+                      alt={formation.titre}
+                      boxSize="100px"
+                      objectFit="cover"
+                      borderRadius="md"
+                    />
+                  )}
         <Box>
           
          <Heading as="h2" size="xl" mb={4}>

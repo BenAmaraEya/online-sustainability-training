@@ -26,11 +26,12 @@ import {
   ModalFooter,
   Flex,
   Image,
+  IconButton
 } from "@chakra-ui/react";
 import { AiOutlineArrowLeft, AiOutlineArrowRight } from "react-icons/ai";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
-
+import { AddIcon } from "@chakra-ui/icons";
 const FormationsList = () => {
   const [formations, setFormations] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
@@ -112,22 +113,34 @@ const FormationsList = () => {
 
   return (
     <Container maxWidth='500%'>
-      <FontAwesomeIcon icon={faEdit}    
-  onClick={() =>
-    navigate(`/addformation`)
-  } style={{color:"black" ,width:"30px", marginTop:"5"}}
- 
- />
-      <Heading as="h2" size="xl" mb={4}>
-        Formations
-      </Heading>
-      <Input
-        placeholder="Recherche formation"
-        mb={4}
-        onChange={(e) => setSearchTerm(e.target.value)}
-      />
-      <TableContainer width="200%" >
-        <Table variant="simple">
+      <Flex justifyContent="space-between" mb={6}>
+        <Heading as="h4" size="xl" color="black">
+          Formations
+        </Heading>
+        <Button
+          leftIcon={<AddIcon />}
+          colorScheme="blue"
+          onClick={() => navigate(`/addformation`)}
+          size="sm"
+        >
+          Add Formation
+        </Button>
+      </Flex>
+      
+      <Flex justify="center" mb={8}>
+        <Input
+          placeholder="Search courses..."
+          size="lg"
+          onChange={(e) => setSearchTerm(e.target.value)}
+          width="60%"
+          borderRadius="full"
+        />
+        <Button ml={4} size="lg" colorScheme="blue" borderRadius="full">
+          Search
+        </Button>
+      </Flex>
+        <TableContainer width="100%" border="1px solid #e2e8f0" borderRadius="md" p={4}>
+        <Table variant="striped" colorScheme="teal">
           <Thead>
             <Tr>
               <Th>Image</Th>
@@ -139,13 +152,17 @@ const FormationsList = () => {
           <Tbody>
             {currentFormations.map((formation) => (
               <Tr key={formation._id}>
-              
                 <Td>
-                {formation.image && <Image src={`http://localhost:5000/${formation.image}`} alt={formation.titre}/>}
-                  </Td>  
-                
-                     
-               
+                  {formation.image && (
+                    <Image
+                      src={`http://localhost:5000/${formation.image}`}
+                      alt={formation.titre}
+                      boxSize="100px"
+                      objectFit="cover"
+                      borderRadius="md"
+                    />
+                  )}
+                </Td>
                 <Td>{formation.titre}</Td>
                 <Td>{formation.description}</Td>
                 <Td>
@@ -158,22 +175,18 @@ const FormationsList = () => {
                     >
                       Details
                     </Button>
-                    
-                   
-                     <FontAwesomeIcon icon={faEdit}    
-                      onClick={() =>
-                        navigate(`/updateformation/${formation._id}`)
-                      } style={{color:"black" ,width:"30px", marginTop:"5"}}
-                     
-                     />
-                    
-                  
-                     
-                     <FontAwesomeIcon icon={faTrash}  style={{color:"red" ,width:"30px",marginTop:"5"}}
-                     onClick={() => handleDeleteConfirmation(formation._id)} />
-                    
-                     
-                   
+                    <IconButton
+                      icon={<FontAwesomeIcon icon={faEdit} />}
+                      aria-label="Edit Formation"
+                      mr={2}
+                      onClick={() => navigate(`/updateformation/${formation._id}`)}
+                    />
+                    <IconButton
+                      icon={<FontAwesomeIcon icon={faTrash} />}
+                      aria-label="Delete Formation"
+                      colorScheme="red"
+                      onClick={() => handleDeleteConfirmation(formation._id)}
+                    />
                   </Flex>
                 </Td>
               </Tr>

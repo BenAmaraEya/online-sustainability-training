@@ -19,11 +19,19 @@ const Sidebar = () => {
     switch (role) {
       case 'client':
         return (
+          <>
           <NavLink exact="true" to="/formations" activeClassName="activeClicked">
             <CDBSidebarMenuItem icon={<FontAwesomeIcon icon={faDashboard} />}>
               Dashboard
             </CDBSidebarMenuItem>
           </NavLink>
+          
+          <NavLink exact="true" to="/forums" activeClassName="activeClicked">
+          <CDBSidebarMenuItem icon={<FontAwesomeIcon icon={faComments} />}>
+            Forum
+          </CDBSidebarMenuItem>
+        </NavLink>
+        </>
         );
       case 'admin':
         return (
@@ -57,7 +65,7 @@ const Sidebar = () => {
 
   return (
     <div style={{ height: '100vh', overflow: 'auto' }}>
-      <CDBSidebar textColor="#fff" backgroundColor="#333">
+      <CDBSidebar textColor="#fff" backgroundColor="#333"  >
         <CDBSidebarHeader prefix={<i className="fa fa-bars fa-large"></i>}>
           {/* Optional Sidebar Header */}
         </CDBSidebarHeader>
