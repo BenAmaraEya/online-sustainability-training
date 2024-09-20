@@ -29,7 +29,7 @@ export class InscriptionService {
   async findFormationsByUserId(userId: string): Promise<Inscription[]> {
     return this.inscriptionModel
       .find({ idUser: userId })
-      .populate('idFormation') // This will fetch the formation details
+      .populate('idFormation')
       .exec();
   }
 }

@@ -75,7 +75,7 @@ const Login = () => {
           if (role === "admin") {
             navigate("/listformations");
           } else {
-            navigate("/formations"); // Navigate to a valid client route
+            navigate("/dashboard"); // Navigate to a valid client route
           }
         } catch (error) {
           console.error('Invalid token:', error);

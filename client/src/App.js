@@ -39,6 +39,7 @@ import FormationAdminDetails from "./pages/administrations/Formation/FormationDe
 import VideoPlayer from "./components/VideoPlayer";
 import Logout from "./pages/user/Logout";
 import Dashboard from "./pages/clients/Dashboard";
+import Profile from "./pages/user/profil";
 
 function App() {
 
@@ -62,6 +63,8 @@ function App() {
         <Route path="/nosformations" element={<Formations />} />
         <Route path="/formations/:idFormation" element={<Formation />} />
         <Route path="/video" element={<VideoPlayer />} />
+        <Route path="/cours/:coursId" element={<CoursItem />} />
+        <Route path="/profil" element={<Profile />} />
       </Routes>
     </Router>
   );
@@ -105,6 +108,7 @@ function MainLayout({ userRole }) {
                 <Route path="/cours/update/:coursId" element={<UpdateCourse />} />
                 <Route path="/message" element={<Messagesection />} />
                 <Route path="/forums" element={<Forums />} />
+                <Route path="/profil" element={<Profile />} />
               </>
             )}
 
@@ -117,6 +121,7 @@ function MainLayout({ userRole }) {
                 <Route path="/video" element={<VideoPlayer />} />
                 <Route path="/message" element={<Messagesection />} />
                 <Route path="/forums" element={<Forums />} />
+                <Route path="/profil" element={<Profile />} />
               </>
             )}
           </Routes>
