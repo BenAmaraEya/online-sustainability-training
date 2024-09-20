@@ -38,6 +38,7 @@ import Formation from "./pages/clients/Formation";
 import FormationAdminDetails from "./pages/administrations/Formation/FormationDetails";
 import VideoPlayer from "./components/VideoPlayer";
 import Logout from "./pages/user/Logout";
+import Dashboard from "./pages/clients/Dashboard";
 
 function App() {
 
@@ -110,6 +111,7 @@ function MainLayout({ userRole }) {
             {/* Client-Specific Routes */}
             {userRole === 'client' && (
               <>
+              <Route path="/dashboard" element={<Dashboard />} />
                 <Route path="/formations" element={<Formations />} />
                 <Route path="/formationdetails/:id" element={<FormationDetails />} />
                 <Route path="/video" element={<VideoPlayer />} />

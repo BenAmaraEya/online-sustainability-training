@@ -44,7 +44,29 @@ export class AuthController {
     // Return the token, user id, and role for frontend usage
     return { id: user.id, token: user.token, role: user.role };
   }
+  @Post('check-user')
+  async checkUser(
+    @Body('email') email: string, 
+    @Body('password') password: string
+  ): Promise<{ exists: boolean; userId?: string; message?: string }> {
+  
+    if (!email || !password) {
+      throw new BadRequestException('Email and password are required');
+    }
+  
+    try {
+      const user = await this.authService.validateUser(email, password); // Call validateUser in AuthService
+      if (user) {
+        return { exists: true, userId: user._id.toString() };
+      }
+      return { exists: false, message: 'User not found or invalid credentials' };
+    } catch (error) {
+      throw new HttpException('Error validating user', HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
+  
 
+  
   @Get("/users")
   findAll() {
     return this.authService.findAll();
@@ -167,10 +189,7 @@ export class AuthController {
     return this.authService.findClients();
   }
 
-  @Get('/employeur')
-  async getEmployeurs(): Promise<User[]> {
-    return this.authService.findEmployeurs();
-  }
+ 
 
 
   @Get('/admin')

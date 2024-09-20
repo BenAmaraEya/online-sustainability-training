@@ -4,7 +4,6 @@ export type UserDocument = User & Document;
 
 export enum Role {
   Admin = 'admin',
-  Employeur = 'employeur',
   Client = 'client'
 }
 

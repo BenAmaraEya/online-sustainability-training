@@ -69,8 +69,21 @@ export class AuthService {
     return { id: user._id.toString(), token, role: user.role };
   }
 
-
-
+  async validateUser(email: string, password: string): Promise<User | null> {
+    const user = await this.userModel.findOne({ email }).exec(); // Find the user by email
+  
+    if (!user) {
+      return null; // If the user is not found, return null
+    }
+  
+    const isPasswordValid = await bcrypt.compare(password, user.password);
+    if (!isPasswordValid) {
+      return null; // If password is invalid, return null
+    }
+  
+    return user; // Return the user if valid
+  }
+  
   findAll() {
     return this.userModel.find();
   }

@@ -20,7 +20,7 @@ const Sidebar = () => {
       case 'client':
         return (
           <>
-          <NavLink exact="true" to="/formations" activeClassName="activeClicked">
+          <NavLink exact="true" to="/dashboard" activeClassName="activeClicked">
             <CDBSidebarMenuItem icon={<FontAwesomeIcon icon={faDashboard} />}>
               Dashboard
             </CDBSidebarMenuItem>

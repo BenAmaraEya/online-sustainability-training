@@ -10,23 +10,24 @@ import {
   Button,
   Container,
   Spinner,
+  useDisclosure,
 } from "@chakra-ui/react";
 import Messagesection from "../message";
 import EvaluationsList from "../administrations/Evaluation/EvaluationsList";
 import QuizList from "../administrations/Evaluation/QuizzList";
 import Questions from "../administrations/Evaluation/Questions";
-
+import InscriptionModal from "./InscriptionModal";
 const FormationDetails = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [formation, setFormation] = useState(null);
   const [loading, setLoading] = useState(true);
-
+  
   const [showEvaluations, setShowEvaluations] = useState(false);
   const [showQuizzes, setShowQuizzes] = useState(false);
 
   const [showAddEvaluationForm, setShowAddEvaluationForm] = useState(false); // New state
-  const params = useParams();
+  const { isOpen, onOpen, onClose } = useDisclosure(); // Modal handling
 // const niveauId={formation.niveau._id}
 
   useEffect(() => {
@@ -50,7 +51,7 @@ const FormationDetails = () => {
     fetchFormation();
   }, [id, navigate]);
 
-  const subscribe = async () => {
+  /*const subscribe = async () => {
     const idUser = localStorage.getItem("id");
     const myForm = {
       user: idUser,
@@ -68,7 +69,7 @@ const FormationDetails = () => {
     } catch (error) {
       console.log(error);
     }
-  };
+  };*/
 
   if (loading) {
     return (
@@ -163,7 +164,13 @@ const FormationDetails = () => {
           ) : (
             <Text fontSize="md">Aucun niveau disponible.</Text>
           )}
-          <Button onClick={() => subscribe()}>S'inscrire</Button>
+           {/* Add the "Inscription" button */}
+        <Button colorScheme="teal" onClick={onOpen}>
+          Inscrire
+        </Button>
+
+        {/* Inscription modal */}
+        <InscriptionModal isOpen={isOpen} onClose={onClose} formationId={formation._id} />
         </Box>
       </VStack>
     </Container>

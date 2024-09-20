@@ -12,6 +12,7 @@ import { NiveauModule } from './module/niveau/niveau.module';
 import { MailerConfigModule } from './auth/mailer.module';
 import { EvaluationsModule } from './module/evaluation/evaluation.module';
 import { MessageModule } from './module/message/message.module';
+import { InscriptionModule } from './module/inscription/inscription.module';
 //import { ProgressModule } from './module/progress/progress.module';
 
 @Module({
@@ -34,6 +35,7 @@ import { MessageModule } from './module/message/message.module';
 
     MessageModule,
     //ProgressModule,
+    InscriptionModule
 
   ],
   controllers: [AppController],
